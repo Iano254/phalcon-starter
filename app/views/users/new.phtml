@@ -1,0 +1,46 @@
+        <!-- Begin Page Content -->
+        <div class="container-fluid">
+
+          <!-- Page Heading -->
+          <h1 class="h3 mb-2 text-gray-800">Create User</h1>
+          
+
+          <!-- DataTales Example -->
+          <div class="row">
+            <div class=" col-md-6 ">
+              <div class="card shadow mb-4">
+            
+            <div class="card-body">
+              <form actions="/users/new" method="POST">
+                  <div class="form-group ">
+                    <label for="inputEmail4">Role</label>
+                   <select id="inputState" class="form-control" name="role" >
+                      <?php foreach ($roles as $role) { ?>
+                         <option value="<?= $role['id'] ?>"> <?= $role['name'] ?> </option>
+                      <?php } ?>
+                      
+                    </select>
+                  </div>
+                   <div class="form-group ">
+                    <label for="fname">Full Name</label>
+                    <input type="text" class="form-control" placeholder="First Name" name="full_name" required>
+                  </div>
+                  <div class="form-group ">
+                    <label for="lname">Phone</label>
+                    <input type="text" class="form-control" placeholder="Phone" name="phone" required>
+                  </div>
+                  <div class="form-group ">
+                    <label for="lname">Password</label>
+                    <input type="password" class="form-control" placeholder="Password" name="password">
+                  </div>
+                  
+                
+                <button type="submit" class="btn btn-primary form-control">Create User</button>
+              </form>
+            </div>
+          </div>
+            </div>
+          </div>
+          
+
+        </div>

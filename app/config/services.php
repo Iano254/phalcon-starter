@@ -60,6 +60,8 @@ $di->setShared('view', function () {
     return $view;
 });
 
+
+
 /**
  * Database connection is created based in the parameters defined in the configuration file
  */
@@ -120,3 +122,9 @@ $di->setShared('session', function () {
 
     return $session;
 });
+
+
+
+
+
+

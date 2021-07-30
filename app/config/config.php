@@ -12,8 +12,8 @@ return new \Phalcon\Config([
         'adapter'     => 'Mysql',
         'host'        => 'localhost',
         'username'    => 'root',
-        'password'    => '',
-        'dbname'      => 'test',
+        'password'    => '@danxine22!',
+        'dbname'      => 'finetouch',
         'charset'     => 'utf8',
     ],
     'application' => [
@@ -28,3 +28,4 @@ return new \Phalcon\Config([
         'baseUri'        => '/',
     ]
 ]);
+

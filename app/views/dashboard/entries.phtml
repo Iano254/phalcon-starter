@@ -1,0 +1,164 @@
+<style type="text/css">
+
+</style>
+<div class="container-fluid">
+  <h5 class="text-dark">ENTRIES</h5>
+  <form method="GET" action="" style="font-size: 13px;">
+    <input name="filter" class="form-control" placeholder="Filter" aria-label="Filter" aria-describedby="filter" value="true" hidden>
+    <div class="row">
+      <div class="col-xl-2 col-md-6">
+        <div class="form-group">
+          <label for="exampleFormControlSelect1">Competition</label>
+          <select class="form-control" id="exampleFormControlSelect1" name="competition">
+            <?php if(isset($_GET['competition'])){ 
+              foreach ($competitions as $item) {
+                if($item['log_id'] == $_GET['competition']){ ?>
+                  <option value="<?= $item['log_id'] ?>"><?= $item['name'] ?></option>
+                <?php }
+              }
+            } ?>
+            <?php if(isset($_GET['competition'])){ 
+              foreach ($competitions as $item) {
+                if($item['log_id'] != $_GET['competition']){ ?>
+                  <option value="<?= $item['log_id'] ?>"><?= $item['name'] ?></option>
+                <?php }
+              }
+            }else{
+              foreach ($competitions as $item) { ?>
+                  <option value="<?= $item['log_id'] ?>"><?= $item['name'] ?></option>
+                
+              <?php } 
+            } ?>
+            
+          </select>
+        </div>
+      </div>
+      <div class="col-xl-2 col-md-6">
+        <div class="form-group">
+    <label for="exampleInputEmail1">Date From</label>
+     <input name="from_date" type="date" class="form-control" placeholder="Date from" aria-label="Date from" aria-describedby="from-date" value="<?php if(isset($_GET['from_date'])){echo $_GET['from_date']; } ?>" required>
+  </div>
+      </div>
+
+      <div class="col-xl-2 col-md-6">
+        <div class="form-group">
+          <label for="exampleInputEmail1">Time From</label>
+           <input name="from_time" type="time" class="form-control" placeholder="Time from" aria-label="Time from" aria-describedby="from-time" value="<?php if(isset($_GET['from_time'])){echo $_GET['from_time']; } ?>" required>
+        </div>
+      </div>
+
+
+      <div class="col-xl-2 col-md-6">
+        <div class="form-group">
+     <label for="exampleInputEmail1">Date To</label>
+     <input name="to_date" type="date" class="form-control" placeholder="Date to" aria-label="Date to" aria-describedby="to-date" value="<?php if(isset($_GET['to_date'])){echo $_GET['to_date']; } ?>" required>
+  </div>
+      </div>
+
+      <div class="col-xl-2 col-md-6">
+        <div class="form-group">
+          <label for="exampleInputEmail1">Time To</label>
+           <input name="to_time" type="time" class="form-control" placeholder="Time to" aria-label="Time to" aria-describedby="to-time" value="<?php if(isset($_GET['to_time'])){echo $_GET['to_time']; } ?>" required>
+        </div>
+      </div>
+
+
+      <div class="col-xl-2 col-md-6">
+        <label for="exampleInputEmail1" style="opacity: 0">Date To</label>
+        <button type="submit" class="form-control btn btn-success " style="font-size: 12px!important;">View Entries</button>
+      </div>
+    </div>
+    
+  </form>
+</div>
+
+
+<?php if(isset($payments)): ?>
+<div class="container-fluid">
+  <div class="row">
+
+            <!-- Earnings (Monthly) Card Example -->
+            <div class="col-xl-6 col-md-6 mb-4">
+              <div class="card border-left-primary shadow h-100 py-2">
+                <div class="card-body">
+                  <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                      <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Collections</div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800"><?= $total_in['total_in'] == null ? "0" : $total_in['total_in'] ?></div>
+                    </div>
+                    <div class="col-auto">
+                      <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Earnings (Monthly) Card Example -->
+            <div class="col-xl-6 col-md-6 mb-4">
+              <div class="card border-left-success shadow h-100 py-2">
+                <div class="card-body">
+                  <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                      <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Entries</div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800"><?= $total_in['entries'] ?></div>
+                    </div>
+                    <div class="col-auto">
+                      <i class="fas fa-calendar  fa-2x text-gray-300"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            
+          </div>
+</div>
+
+<!-- Content Row -->    
+
+<!-- Begin Page Content -->
+<div class="container-fluid">
+
+  <div class="card shadow mb-4">
+    <div class="card-header">
+      Entries
+    </div>
+   
+    <div class="card-body">
+      <div class="table-responsive">
+        <table class="table table-bordered" width="100%" cellspacing="0" id="dataTable">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Name</th>
+              <th>Phone</th>
+              <th>Trans ID</th>
+              <th>Account</th>
+              <th>Amount</th>
+              <th>Entries</th>
+              <th>Time</th>
+            </tr>
+          </thead>
+         
+          <tbody>
+
+              <?php $counter = 0;  foreach ($payments as $payment ) { $counter = $counter+1; ?>
+                <tr>
+                  <td> <?= $counter ?> </td>
+                  <td> <?= $payment['full_name'] ?> </td>
+                  <td> <?= $payment['msisdn'] ?> </td>
+                  <td> <?= $payment['transaction_id'] ?> </td>
+                  <td> <?= $payment['bill_ref_number'] ?> </td>
+                  <td> <?= $payment['amount'] ?> </td>
+                  <td> <?= $payment['entry_count'] ?> </td>
+                  <td> <?= $payment['transaction_time'] ?></td>
+                </tr>
+              <?php } ?>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+<?php endif; ?>
